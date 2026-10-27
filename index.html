@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edna💎 · Birthday Jackpot</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="fx" aria-hidden="true"></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<header class="top">
+  <div class="bar" role="progressbar" aria-label="Progress" aria-valuemin="0" aria-valuemax="100"><i id="barFill"></i></div>
+  <button id="musicBtn" class="icon" aria-label="Play or pause background music">🎵</button>
+</header>
+<audio id="audio" src="assets/audio/birthday-song.mp3" preload="none"></audio>
+
+<main>
+<!-- 0 WELCOME -->
+<section class="screen" data-screen="welcome">
+  <p class="gold">EDNA💎</p>
+  <h1>THE BIRTHDAY QUEEN 👑</h1>
+  <p class="msg">Today, you are the main character! ❤️<br><br>Someone special has prepared a little adventure just for you.<br><br>Inside, you'll discover laughter, sweet memories, romantic surprises, and a special birthday jackpot.<br><br>Are you ready to discover what awaits you?</p>
+  <button class="btn glow" data-go="boxes">LET'S GO, BIRTHDAY GIRL! 🎁</button>
+</section>
+
+<!-- 1 BOXES -->
+<section class="screen" data-screen="boxes" hidden>
+  <h2>Pick a mystery box</h2>
+  <div class="grid">
+    <button class="box b1" data-go="laugh"><span>😂</span><b>THE LAUGH BOX</b><small>Because your smile deserves its own celebration!</small></button>
+    <button class="box b2" data-go="heart"><span>❤️</span><b>THE HEART BOX</b><small>A little collection of things that make you special.</small></button>
+    <button class="box b3" data-go="diamond"><span>💎</span><b>THE DIAMOND BOX</b><small>Some memories deserve a special place.</small></button>
+    <button class="box b4" data-go="jackpot"><span>💰</span><b>THE CASH JACKPOT</b><small>One attempt. Feeling lucky?</small></button>
+  </div>
+  <button class="btn ghost" data-go="welcome">← Back</button>
+</section>
+
+<!-- 2 LAUGH -->
+<section class="screen" data-screen="laugh" hidden>
+  <h2>THE LAUGH BOX 😂</h2>
+  <p class="sub">Because your smile deserves its own celebration!</p>
+  <button class="gift" id="laughGift" aria-label="Open the Laugh Box">🎁</button>
+  <div id="laughMsg" class="card msg" hidden>Ei, birthday girl! 😂❤️<br><br>Today, you're officially allowed to disturb everybody with your birthday excitement.<br><br>You can smile too much, take unlimited selfies, and behave like the whole world belongs to you.<br><br>But please, don't forget your favourite person who helped make this day special! 😂💎<br><br>Happy birthday, Edna! 🤣🤣</div>
+  <nav><button class="btn ghost" data-go="boxes">← Back</button><button class="btn" data-go="heart" id="laughNext" hidden>Continue ❤️</button></nav>
+</section>
+
+<!-- 3 HEART -->
+<section class="screen" data-screen="heart" hidden>
+  <h2>THE HEART BOX ❤️</h2>
+  <p class="sub">A little collection of things that make you special.</p>
+  <ul id="compliments" class="list"></ul>
+  <button class="btn glow" id="heartBtn">Open the Heart Box ❤️</button>
+  <nav><button class="btn ghost" data-go="laugh">← Back</button><button class="btn" data-go="diamond" id="heartNext" hidden>Continue 💎</button></nav>
+</section>
+
+<!-- 4 DIAMOND -->
+<section class="screen" data-screen="diamond" hidden>
+  <h2>THE DIAMOND BOX 💎</h2>
+  <img src="assets/images/edna-memory.jpeg?v=2" alt="Emmanuel and Edna together" loading="lazy">
+  <figure class="frame"><img id="memImg" src="assets/images/edna-memory.jpeg?v=2" alt="Emmanuel and Edna together"><div id="memPh" hidden>💎<br>Add your photo at<br><code>assets/images/edna-memory.jpeg</code></div></figure>
+  <p class="msg card">Out of all the pictures I could choose, I chose this one because it reminds me of a moment we share. ❤️<br><br>Sometimes, it's the little memories that become the most special.<br><br>Today, I just want you to know that you deserve beautiful things, genuine happiness, and countless reasons to smile.<br><br>May this new chapter of your life be filled with wonderful memories. 🥹💎</p>
+  <div class="player card">
+    <button id="playBtn" class="icon" aria-label="Play or pause birthday song">▶</button>
+    <div class="pmid"><b>Birthday Song for Edna 🎶</b><input id="seek" type="range" min="0" max="100" value="0" aria-label="Song progress"><small id="audioMsg"></small></div>
+    <input id="vol" type="range" min="0" max="100" value="80" aria-label="Volume">
+  </div>
+  <nav><button class="btn ghost" data-go="heart">← Back</button><button class="btn" data-go="jackpot">To the Jackpot 💰</button></nav>
+</section>
+
+<!-- 5 JACKPOT -->
+<section class="screen" data-screen="jackpot" hidden>
+  <h2>THE BIRTHDAY CASH JACKPOT 🎰</h2>
+  <p class="sub">Ei, Edna💎! Are you feeling lucky today?</p>
+  <div class="tiles" id="tiles"></div>
+  <div class="reel" aria-live="polite"><span id="reel">GH₵ ???</span></div>
+  <p class="note" id="jpNote">You have ONE attempt to try your luck. Choose your moment wisely! ❤️</p>
+  <button class="btn glow" id="spinBtn">SPIN THE JACKPOT! 🎰</button>
+  <nav><button class="btn ghost" data-go="diamond">← Back</button><button class="btn" data-go="win" id="jpNext" hidden>See my prize 🎉</button></nav>
+</section>
+
+<!-- 6 WIN -->
+<section class="screen" data-screen="win" hidden>
+  <h2>🎉 JACKPOT WINNER! 🎉</h2>
+  <p class="gold">CONGRATULATIONS, EDNA💎!</p>
+  <p>You've won...</p>
+  <div class="prize">GH₵150 CASH 💵</div>
+  <p class="msg card">Ei, birthday girl! 😂❤️<br><br>Today is your lucky day!<br><br>Out of all the prizes, your birthday jackpot has landed on GH₵150!<br><br>This is your special birthday cash gift from Emmanuel. 💎❤️<br><br>I hope it adds a little extra happiness to your special day.<br><br>Enjoy your birthday, beautiful! 🎂🥹</p>
+  <button class="btn glow" id="claimBtn">CLAIM MY BIRTHDAY PRIZE 🎁</button>
+  <p class="card msg" id="claimMsg" hidden>Your GH₵150 birthday cash gift is ready! ❤️<br><br>Expect it in no time.<br><br>Happy birthday, Edna💎! 🎂<br><small>(This page does not send money or ask for any payment details.)</small></p>
+  <nav><button class="btn ghost" data-go="jackpot">← Back</button><button class="btn" data-go="letter">Open my letter 💌</button></nav>
+</section>
+
+<!-- 7 LETTER -->
+<section class="screen" data-screen="letter" hidden>
+  <div class="letter">
+    <p>Happy birthday, my special girl, Edna💎! ❤️</p>
+    <p>Today is your day, and I want you to know that you deserve to be celebrated.</p>
+    <p>I wish you happiness that lasts, peace that comforts you, and opportunities that help you become everything you dream of becoming.</p>
+    <p>May God bless your new age, guide your decisions, protect you wherever you go, and give you strength in every season of life.</p>
+    <p>May your efforts in school bring beautiful results, may your dreams continue to grow, and may you always find reasons to smile even when life becomes challenging.</p>
+    <p>I hope this new chapter brings you beautiful experiences, wonderful memories, and countless blessings.</p>
+    <p>Keep smiling, keep growing, and keep being the amazing person you are.</p>
+    <p>Happy birthday, Edna💎! ❤️🎂</p>
+    <p class="sign">With love,<br>Emmanuel ❤️</p>
+  </div>
+  <nav><button class="btn ghost" data-go="win">← Back</button><button class="btn glow" data-go="final">Continue 🎉</button></nav>
+</section>
+
+<!-- 8 FINAL -->
+<section class="screen" data-screen="final" hidden>
+  <h1>JACKPOT UNLOCKED! 💎🎰</h1>
+  <p class="gold">CONGRATULATIONS, EDNA! 🎉</p>
+  <p>Your birthday adventure is complete!</p>
+  <div class="gifts" aria-hidden="true"><span>🎁</span><span>🎂</span><span>🎁</span></div>
+  <p class="msg card">Today, you received laughter, sweet words, special memories, and a little birthday jackpot.<br><br>But above everything else, I hope this experience reminds you that you deserve to be appreciated and celebrated.<br><br>May this new age bring you more happiness, more opportunities, more beautiful memories, and more reasons to smile.<br><br>Happy birthday, Edna💎! ❤️👑</p>
+  <button class="btn glow" id="replayBtn">REPLAY MY BIRTHDAY MEMORIES ❤️</button>
+</section>
+</main>
+<script src="js/script.js"></script>
+</body>
+</html>
